@@ -3,14 +3,14 @@
 #include <ESP8266WebServer.h>
 
 // Replace with your network credentials
-const char* ssid = "FliaCC";
-const char* password = "Enero2021";
+const char* ssid = "********";
+const char* password = "*******";
 
 // WebServer Instantiation
 ESP8266WebServer server(80);
 
 void handleRoot() {
-  // Muestra una página HTML básica con un botón para encender y apagar un LED
+  // Muestra una página HTML básica con dos botónes para encender y apagar dos LED
   String html = "<html><body>";
   html += "<center>";
   html += "<h1>Practica 1 IoT</h1><h2>Gabriel Cano</h2>";
@@ -50,7 +50,7 @@ void handledLed2Off() {
 }
 
 void setup() {
-
+  // configura los puertos como salidas
   pinMode(D1, OUTPUT);
   pinMode(D2, OUTPUT);
 
@@ -64,6 +64,7 @@ void setup() {
   // Inicia el servidor
   server.begin();
   Serial.println("Servidor iniciado");
+
   //Serial Comunnication and Wifi Connection kick off
   Serial.begin(9600);
   WiFi.begin(ssid, password);
@@ -79,12 +80,9 @@ void setup() {
     Serial.println(ssid);
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
-
 }
 
 void loop() {
-
-//Fragmento que ejecuta el server
    //Handle client requests to web Server using .handleClient() method from ESP8266WebServer class
   server.handleClient();
 }
