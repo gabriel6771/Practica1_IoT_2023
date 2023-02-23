@@ -3,8 +3,8 @@
 #include <ESP8266WebServer.h>
 
 // Replace with your network credentials
-const char* ssid = "********";
-const char* password = "*******";
+const char* ssid = "FliaCC";
+const char* password = "Enero2021";
 
 // WebServer Instantiation
 ESP8266WebServer server(80);
@@ -15,11 +15,11 @@ void handleRoot() {
   html += "<center>";
   html += "<h1>Practica 1 IoT</h1><h2>Gabriel Cano</h2>";
   html += "<h2>Led1</h2>";
-  html += "<p><a href=\"/led1/on\"><button>Encender</button></a></p>";
-  html += "<p><a href=\"/led1/off\"><button>Apagar</button></a></p>";
+  html += "<a href=\"/led1/**\"><button>ON</button></a>";
+  html += "<a href=\"/led1/***\"><button>OFF</button></a>";
   html += "<h2>Led2</h2>";
-  html += "<p><a href=\"/led2/on\"><button>Encender</button></a></p>";
-  html += "<p><a href=\"/led2/off\"><button>Apagar</button></a></p>";
+  html += "<a href=\"/led2/**\"><button>ON</button></a>";
+  html += "<a href=\"/led2/***\"><button>OFF</button></a>";
   html += "</center>";
   html += "</body></html>";
   server.send(200, "text/html", html);
@@ -28,25 +28,25 @@ void handleRoot() {
 void handleLed1On() {
   // Enciende el LED1
   digitalWrite(D1, HIGH);
-  server.send(200, "text/plain", "LED encendido");
+  server.send(200, "text/plain", "LED 1 Encendido");
 }
 
 void handleLed1Off() {
   // Apaga el LED1
   digitalWrite(D1, LOW);
-  server.send(200, "text/plain", "LED apagado");
+  server.send(200, "text/plain", "LED 1 Apagado");
 }
 
 void handleLed2On() {
   // Enciende el LED2
   digitalWrite(D2, HIGH);
-  server.send(200, "text/plain", "LED 2 encendido");
+  server.send(200, "text/plain", "LED 2 Encendido");
 }
 
 void handledLed2Off() {
   // Apaga el LED2
   digitalWrite(D2, LOW);
-  server.send(200, "text/plain", "LED 2 apagado");
+  server.send(200, "text/plain", "LED 2 Apagado");
 }
 
 void setup() {
@@ -56,10 +56,10 @@ void setup() {
 
   // Configura las rutas del servidor web
   server.on("/", handleRoot);
-  server.on("/led1/on", handleLed1On);
-  server.on("/led1/off", handleLed1Off);
-  server.on("/led2/on", handleLed2On);
-  server.on("/led2/off", handledLed2Off);
+  server.on("/led1/**", handleLed1On);
+  server.on("/led1/***", handleLed1Off);
+  server.on("/led2/**", handleLed2On);
+  server.on("/led2/***", handledLed2Off);
 
   // Inicia el servidor
   server.begin();
